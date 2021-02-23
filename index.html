@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="ru">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Основы JavaScript</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+			rel="stylesheet">
+		<link rel="stylesheet" href="style.css">
+	</head>
+
+	<body>
+		<header>
+			<nav>
+				<ul class="menu">
+					<li><a href="#greetings_anchor">Приветствие</a></li>
+					<li><a href="#triangle_anchor">Площадь треугольника</a></li>
+					<li><a href="#strings_anchor">Сравнение строк</a></li>
+					<li><a href="#minmax_anchor">Минимум и максимум</a></li>
+					<li><a href="#timer_anchor">Таймер</a></li>
+					<li><a href="#test_anchor">Тест</a></li>
+					<li><a href="#splash_anchor">Заставка</a></li>
+				</ul>
+			</nav>
+			<p id="header_text">Решили изучить JavaScript? Отличный выбор!</p>
+		</header>
+		<main>
+			<!--Приветствие функция-->
+			<div class="greetings_con">
+				<div class="greetings">
+					<div id="greet">
+						<label>Пожалуйста, представьтесь: </label>
+						<input type="text" id="name_input">
+						<button id="name_input_btn">А что дальше?</button>
+					</div>
+					<div id="ungreet">
+						<div id="name_output"></div>
+						<button id="name_delete_btn">Убрать имя</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="main_container">
+				<!--Введение-->
+				<div class="container">
+					<h1>Введение</h1>
+					<p>JavaScript – это динамический язык программирования, который добавляет интерактивность на веб-сайт (например: отклик при нажатии кнопок или при вводе данных в формы, динамические стили, анимация).</p>
+					<p>Код на языке JavaScript называют скриптом, его сохраняют в отдельный	файл с расширением js. В HTML для добавления JavaScript есть специальный тег: <code>&lt;script src="адрес_файла"&gt;&lt;/script&gt;</code>.</p>
+					<p>Скрипт обычно подключают в самом конце страницы, перед закрывающим тегом	<code>&lt;/body&gt;</code>.</p>
+					<p>С чего же начать изучение? Давайте рассмотрим несколько типичных задач, которые можно решить	с помощью JavaScript.</p>
+				</div>
+
+				<!--Приветствие-->
+				<div class="container">
+					<div>
+						<img src="images/greetings.png" alt="Приветственная картинка" class="leftimg">
+					</div>
+					<div>
+						<h1 id="greetings_anchor">Приветствие</h1>
+						<p>Если вы ввели свое имя выше, то можете заметить, что после перезагрузки страницы оно не исцезает. Для того, чтобы сделать так, нужно воспользоваться <code>loсalStorage.</code></p>
+						<p>Объект веб-хранилища localStorage позволяет хранить пары ключ/значение в браузере. Интересно, что данные, которые в него записаны, сохраняются даже после	перезапуска браузера.</p>
+						<p>Чтобы сохранить данные, нужно воспользоваться специальным методом <code>localStorage.setItem('test', 1)</code>, где 'test' является ключом, а 1 – значением.</p>
+					</div>
+				</div>
+
+				<!--Площадь треугольника-->
+				<div class="container">
+					<div>
+						<img src="images/triangle.png" alt="Треугольник" class="rightimg">
+					</div>
+					<div>
+						<h1 id="triangle_anchor">Площадь треугольника</h1>
+						<p>Одна из распространенных задач – получение значения поля ввода с помощью свойств	объекта document.</p>
+						<p>Найти объект на странице можно несколькими способами, например с применением функций <code>getElementById(String id)</code>. Значения полей преобразуются в целые числа в помощью функции parseInt.</p>
+						<p>Ниже можно попробовать в действии функцию по расчету площади треугольника по высоте и основанию.</p>
+						<div id="triangle">
+							<form name="triangle" onsubmit="return false;" id="triangle_con">
+								<label>Высота треугольника: <input type="text" name="height" id="height"></label>								
+								<label>Основание треугольника: <input type="text" name="base" id="base"></label>								
+
+								<button onclick="triangleArea()">Вычислить</button>
+								<div id="res_triangle"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!--Сравнение строк-->
+				<div class="container">
+					<div>
+						<img src="images/strings.png" alt="Сравнение строк"	class="leftimg">
+					</div>
+					<div>
+						<h1 id="strings_anchor">Сравнение строк по длине</h1>
+						<p>Следующая функция сравнивает строки по их длине.	Для того, чтобы узнать длину строки, нужно воспользоваться встроенным свойством строки <code>length</code>.</p>
+						<div>
+							<form name="strings" onsubmit="return false;" id="strings_con">
+								<label>Первая строка: <input type="text" name="str1"></label>
+								<label>Вторая строка: <input type="text" name="str2"></label>
+
+								<button onclick="strCompare()">Сравнить</button>
+								<div id="res_strings"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!--Минимум и максимум-->
+				<div class="container">
+					<div>
+						<img src="images/minmax.png" alt="Минимум и максимум" class="rightimg">
+					</div>
+					<div>
+						<h1 id="minmax_anchor">Нахождение минимума и максимума</h1>
+						<p>Одна из типичных задач для новичков – поиск минимума и максимума в массиве. Первый способ - запросить у пользователя несколько чисел запятую (3,-5,6), пробел (3&nbsp;-5&nbsp;6) или другой разделитель. В таком случае можно воспользоваться методом <code>split(' ')</code>, который преобразует строку в массив строк, разделяя её по некоторому символу или последовательности символов.</p>
+						<p>Здесь нужно вводить числа через запятую.</p>
+						<div>
+							<form name="array" onsubmit="return false;">
+								<div class="row_block">
+									<input type="text" name="array">
+									<button onclick="minAndMax()">Найти</button>
+								</div>
+								<div id="res_min"></div>
+								<div id="res_max"></div>
+								<div id="arr"></div>
+							</form>
+						</div>
+
+						<p>Второй способ – добавлять числа отдельно. Число вводится в поле input, затем пользователь нажимает кнопку и в массив добавляется новый элемент.</p>
+						<p>Сам поиск можно провести в цикле, но можно воспользоваться встроенными методами <code>Math.min()</code> и <code>Math.max()</code>.</p>
+						<div>
+							<form name="array2" onsubmit="return false;">
+								<div class="row_block">
+									<input type="text" name="array2">
+									<button id="array2_add">Добавить в массив</button>
+								</div>								
+								<button id="array2_exe">Найти</button>
+								<div id="res_min2"></div>
+								<div id="res_max2"></div>
+								<div id="arr2"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!--Таймер-->
+				<div class="container">
+					<div>
+						<img src="images/timer.png" alt="Таймер" class="leftimg">
+					</div>
+					<div>
+						<h1 id="timer_anchor">Таймер</h1>
+						<p>Чтобы сделать таймер на странице, используем функцию <code>setInterval()</code>, которая позволяет исполнять код через некоторые промежутки времени (в нашем случае 1 секунда или 1000 миллисекунд).
+						</p>
+						<div>
+							<div>Введите количество минут</div>
+							<div class="row_block">
+								<input type="text" id="time">
+								<button class="button" id="start">Запустить</button>
+							</div>							
+
+							<container id="buttons">								
+								<button class="button" id="stop">Остановить</button>
+								<button class="button" id="passed">Сколько времени прошло?</button>
+							</container>
+
+							<div id="timer">
+								00:00
+							</div>
+							<div id="time_passed"></div>
+						</div>
+					</div>
+				</div>
+
+				<!--Тест-->
+				<div class="container">
+					<div>
+						<img src="images/test.png" alt="Приветственная картинка" class="rightimg">
+					</div>
+					<div>
+						<h1 id="test_anchor">Тест</h1>
+						<p>Есть много способов создания теста. Можно сделать тест с выбором варианта ответа или с вводом текста в поле. Все вопросы могут находиться на одной странице или переключаться во время прохождения.</p>
+						<p>В данном тесте варианты ответа отображаются в полях <code>&lt;input type='radio'&gt;</code>. Для того чтобы реализовать переключение вопросов, удобно хранить массив объектов Вопрос.</p>
+						<p><code>
+								{<Br>
+								&nbsp;&nbsp;&nbsp;&nbsp;question: 'Текст вопроса',<Br>
+								&nbsp;&nbsp;&nbsp;&nbsp;answers: ['Вариант 1','Вариант 2','Вариант 3'],<Br>
+								&nbsp;&nbsp;&nbsp;&nbsp;right: 1<Br>
+								}
+						</code></p>
+						<p>Теперь вы можете проверить, как работает данный тест, а также свои знания о языке JavaScript</p>
+						<div>
+							<button id="test_start_btn">Начать тест!</button>
+							<form onsubmit="return false;" style="display: none;" id="test_form">								
+								<label id="question"></label>
+								
+								<div>
+									<input type="radio" name="test" id="answer0" value="0">
+									<label for="answer0" id="answer0_text"></label>
+								</div>
+								<div>
+									<input type="radio" name="test" id="answer1" value="1">
+									<label for="answer1" id="answer1_text"></label>
+								</div>
+								<div>
+									<input type="radio" name="test" id="answer2" value="2">
+									<label for="answer2" id="answer2_text"></label>
+								</div>
+
+								<button id="test_btn">Следующий вопрос</button>
+								<label id="test_count">1/10</label>
+								<button id="test_end_btn" style="display: none;">Завершить тест</button>
+							</form>
+							<div id="score" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+
+				<!--Всплывающее окно-->
+				<div class="container">
+					<div>
+						<img src="images/splash.png" alt="Всплывающее окно" class="leftimg">
+					</div>
+					<div>
+						<h1 id="splash_anchor">Всплывающее окно</h1>
+
+						<p>Последний пример. При нажатии на кнопку появляется всплывающее окно-заставка. В нем можно увидеть текущую дату и время. Их можно получить из объекта <code>Date</code> с помощью методов get	(например, <code>getFullYear() или getMinutes()</code>).</p>
+						<p>Чтобы сделать само всплывающее окно, можно заранее добавить на страницу блок и задать ему свойство <code>display: none</code> в стилевой таблице. В таком случае ни пользователь, ни другие элементы на странице не "увидят" скрытый элемент. Его появление и исчезновеие нужно настроить по событию <code>onclick</code>.</p>
+						<div>
+							<button id="splash_btn">Отобразить заставку</button>
+						</div>
+
+						<div style="display: none;" id="splash">
+							<div id="splash_name" class="splash_text"></div>
+							<div id="splash_time" class="splash_text"></div>
+							<div id="splash_date" class="splash_text"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer></footer>
+
+		<script src="script.js"></script>
+	</body>
+
+</html>

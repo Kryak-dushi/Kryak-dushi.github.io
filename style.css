@@ -1,0 +1,209 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: url(images/header.png) no-repeat;
+    background-size: 100%;
+    height: 400px;
+}
+
+#header_text {
+    font-size: 2.5em;
+    color: #ffffff;
+    max-width: 600px;
+    position: relative;
+    top: 100px;
+    left: 15%;
+}
+
+footer {
+    background-color: #24a3ee;
+    height: 50px;
+}
+
+.menu {
+    list-style: none;
+    text-align: center;
+}
+
+.menu li {
+    display: inline-block;
+    margin: 25px 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    transition: color .2s;
+    color: #ffffff;
+}
+
+.menu a:hover {
+    color: #FF7893;
+}
+
+p, label, button, input, div {
+    font-size: 24px;
+}
+
+h1 {
+    font-size: 2em;
+    color: #3644F0;
+}
+
+p {
+    margin: 15px 0px;
+}
+
+code {
+    background-color: #CCEBFD;
+    border-radius: 5px;
+    font-style: italic;
+}
+
+.main_container {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    margin: 1em;
+}
+
+img {
+    width: 350px;
+    margin: 20px;
+}
+
+.leftimg {
+    float: left;
+}
+
+.rightimg {
+    float: right;
+}
+
+.greetings_con {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.greetings {
+    margin-top: 15px;
+    width: 350px;
+    word-break: break-all;
+}
+
+#name_input {
+    width: 300px;
+    margin-top: 10px;
+}
+
+#name_input_btn {
+    margin-left: 0;
+}
+
+#triangle_con label, div {
+    display: block;
+    margin: 10px;
+}
+
+#strings_con label, div {
+    display: block;
+    margin: 10px;
+}
+
+#test_form div {
+    display: block;
+    margin: 10px;
+}
+
+#question, #score {
+    color: #3644F0;
+}
+
+#triangle_con, #strings_con {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.row_block {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    margin: 0;
+}
+
+#buttons {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+}
+
+#time {
+    margin: 10px;
+}
+
+#timer {
+    font-size: 2em;
+}
+
+button {
+    border: 0;
+    border-radius: 5px;
+    background: #24a3ee;
+    color: #fff;
+    padding: 8px 25px;
+    width: fit-content;
+    display: block;
+    margin: 10px;
+}
+
+input[type="text"] {
+    border: 1px solid #24a3ee;
+    border-radius: 5px;
+    background: #CCEBFD;
+    outline: none;
+    width: 150px;
+    height: 30px;
+    padding: 3px;
+}
+
+#splash {
+    background: url(images/sky.jpg) no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.splash_text {
+    position: relative;
+    top: 200px;
+    color: #041243;
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+
+#splash_name {
+    width: 80%;
+    margin: auto;
+    word-break: break-all;
+}
