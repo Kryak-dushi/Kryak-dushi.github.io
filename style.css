@@ -66,6 +66,40 @@ code {
     font-style: italic;
 }
 
+img {
+    width: 350px;
+    margin: 20px;
+}
+
+.leftimg {
+    float: left;
+}
+
+.rightimg {
+    float: right;
+}
+
+button {
+    border: 0;
+    border-radius: 5px;
+    background: #24a3ee;
+    color: #fff;
+    padding: 8px 25px;
+    width: fit-content;
+    display: block;
+    margin: 10px;
+}
+
+input[type="text"] {
+    border: 1px solid #24a3ee;
+    border-radius: 5px;
+    background: #CCEBFD;
+    outline: none;
+    width: 150px;
+    height: 30px;
+    padding: 3px;
+}
+
 .main_container {
     width: 60%;
     margin-left: auto;
@@ -78,17 +112,13 @@ code {
     margin: 1em;
 }
 
-img {
-    width: 350px;
-    margin: 20px;
-}
-
-.leftimg {
-    float: left;
-}
-
-.rightimg {
-    float: right;
+.function_ex {
+    display: table-cell;
+    background: #E3F4FE;
+    border-radius: 5px;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
 }
 
 .greetings_con {
@@ -123,6 +153,13 @@ img {
     margin: 10px;
 }
 
+
+#triangle_con, #strings_con {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 #test_form div {
     display: block;
     margin: 10px;
@@ -132,10 +169,13 @@ img {
     color: #3644F0;
 }
 
-#triangle_con, #strings_con {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+.time {
+    margin: 10px;
+    max-width: 110px;
+}
+
+#timer {
+    font-size: 2em;
 }
 
 .row_block {
@@ -149,36 +189,6 @@ img {
     display: flex;
     height: fit-content;
     align-items: center;
-}
-
-.time {
-    margin: 10px;    
-    max-width: 110px;
-}
-
-#timer {
-    font-size: 2em;
-}
-
-button {
-    border: 0;
-    border-radius: 5px;
-    background: #24a3ee;
-    color: #fff;
-    padding: 8px 25px;
-    width: fit-content;
-    display: block;
-    margin: 10px;
-}
-
-input[type="text"] {
-    border: 1px solid #24a3ee;
-    border-radius: 5px;
-    background: #CCEBFD;
-    outline: none;
-    width: 150px;
-    height: 30px;
-    padding: 3px;
 }
 
 #splash {
