@@ -116,7 +116,7 @@
 					<div>
 						<h1 id="minmax_anchor">Нахождение минимума и максимума</h1>
 						<p>Одна из типичных задач для новичков – поиск минимума и максимума в массиве. Первый способ - запросить у пользователя несколько чисел запятую (3,-5,6), пробел (3&nbsp;-5&nbsp;6) или другой разделитель. В таком случае можно воспользоваться методом <code>split(' ')</code>, который преобразует строку в массив строк, разделяя её по некоторому символу или последовательности символов.</p>
-						<p>Здесь нужно вводить числа через запятую.</p>
+						<p>Здесь нужно вводить числа через запятую, поиск будет производиться среди 5 элементов.</p>
 						<div>
 							<form name="array" onsubmit="return false;">
 								<div class="row_block">
@@ -156,21 +156,22 @@
 						<p>Чтобы сделать таймер на странице, используем функцию <code>setInterval()</code>, которая позволяет исполнять код через некоторые промежутки времени (в нашем случае 1 секунда или 1000 миллисекунд).
 						</p>
 						<div>
-							<div>Введите количество минут</div>
+							<div>Введите время</div>
 							<div class="row_block">
-								<input type="number" id="time">
-								<button class="button" id="start">Запустить</button>
+								<input type="text" id="hours" class="time" placeholder="Часы">
+								<input type="text" id="minutes" class="time" placeholder="Минуты">
+								<input type="text" id="seconds" class="time" placeholder="Секунды">
 							</div>							
 
-							<div id="buttons">								
+							<div id="buttons">										
+								<button class="button" id="start">Запустить</button>						
 								<button class="button" id="stop">Остановить</button>
-								<button class="button" id="passed">Сколько времени прошло?</button>
+								<button class="button" id="continue">Продолжить</button>
 							</div>
 
 							<div id="timer">
-								00:00
+								00:00:00
 							</div>
-							<div id="time_passed"></div>
 						</div>
 					</div>
 				</div>

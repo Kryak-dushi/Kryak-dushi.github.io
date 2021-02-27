@@ -151,15 +151,9 @@ img {
     align-items: center;
 }
 
-#time {
-    margin: 10px;
-    border: 1px solid #24a3ee;
-    border-radius: 5px;
-    background: #CCEBFD;
-    outline: none;
-    width: 150px;
-    height: 30px;
-    padding: 3px;
+.time {
+    margin: 10px;    
+    max-width: 110px;
 }
 
 #timer {

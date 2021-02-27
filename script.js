@@ -42,7 +42,9 @@ function greetingsSet() {
 function triangleArea() {
 	let h = parseInt(document.triangle.height.value);
 	let b = parseInt(document.triangle.base.value);
-	document.getElementById('res_triangle').innerHTML = h * b / 2;
+
+	if (Number.isInteger(h) && Number.isInteger(b) && h > 0 && b > 0) { document.getElementById('res_triangle').innerHTML = h * b / 2; }
+	else { document.getElementById('res_triangle').innerHTML = "Введенные данные некорректны"; }
 }
 
 function strCompare() {
@@ -56,11 +58,20 @@ function strCompare() {
 function minAndMax() {
 	let arr = [];
 	arr = document.array.array.value.split(",");
-	arr[0] = parseInt(arr[0]);
+
+	let j = 0;
+	while (j < arr.length) {
+		arr[j] = parseInt(arr[j]);
+		if (arr[j] !== arr[j]) {
+			arr.splice(j, 1);
+		} else j++;
+	}
+
+	if (arr.length > 5) arr.length = 5;
+
 	let max = arr[0];
 	let min = arr[0];
 	for (var i = 1; i < arr.length; i++) {
-		arr[i] = parseInt(arr[i]);
 		if (arr[i] > max) max = arr[i];
 		if (arr[i] < min) min = arr[i];
 	}
@@ -73,14 +84,22 @@ function minAndMaxSecond() {
 	let arr = [];
 
 	document.getElementById("array2_add").onclick = () => {
-		arr[arr.length] = parseInt(document.array2.array2.value);
-		document.array2.array2.value = '';
+		let item = parseInt(document.array2.array2.value);
+
+		if (Number.isInteger(item)) {
+			arr[arr.length] = item;
+			document.array2.array2.value = '';
+			document.getElementById('arr2').innerHTML = `Массив: ${arr}`;
+		}
+
+		if (arr.length == 5) {
+			document.array2.array2.readOnly = true;
+		}
 	}
 
 	document.getElementById("array2_exe").onclick = () => {
 		document.getElementById('res_max2').innerHTML = `Максимальный элемент: ${Math.max(...arr)}`;
 		document.getElementById('res_min2').innerHTML = `Минимальный элемент: ${Math.min(...arr)}`;
-		document.getElementById('arr2').innerHTML = `Массив: ${arr}`;
 		arr.length = 0;
 	}
 }
@@ -88,48 +107,73 @@ function minAndMaxSecond() {
 function timer() {
 	let start = document.getElementById("start");
 	let stop = document.getElementById("stop");
-	let passed = document.getElementById("passed");
-	let passedShow = document.getElementById("time_passed");
+	let cont = document.getElementById("continue");
+
+	let hours = document.getElementById("hours");
+	let minutes = document.getElementById("minutes");
+	let seconds = document.getElementById("seconds");
+
 	let timerShow = document.getElementById("timer");
 
-	let timePassed = 0;
 	let isRun = false;
 	let timerId = null;
+	let mainTime = 0;
 
 	start.onclick = () => {
 		if (isRun) { return; }
 		isRun = true;
-		startTimer(parseInt(document.getElementById("time").value) * 60);
+
+		let h = parseInt(hours.value);
+		let m = parseInt(minutes.value);
+		let s = parseInt(seconds.value);
+
+		if (!Number.isInteger(s)) s = 0;
+		if (!Number.isInteger(m)) m = 0;
+		if (!Number.isInteger(h)) h = 0;
+
+		if (s >= 60) {
+			m += Math.floor(s / 60);
+			s %= 60;
+		}
+		if (m >= 60) {
+			h += Math.floor(m / 60);
+			m %= 60;
+		}
+		if (h > 24) h = 24;
+
+		mainTime = h * 3600 + m * 60 + s;
+
+		startTimer();
 	}
 
 	stop.onclick = () => {
 		isRun = false;
 		clearInterval(timerId);
-		timePassed = 0;
 	}
 
-	passed.onclick = () => {
-		if (timePassed < 1) {
-			passedShow.innerHTML = "Таймер не запущен";
-		} else passedShow.innerHTML = `Прошло с начала отсчета: ${convertSeconds(timePassed - 1)}`;
+	cont.onclick = () => {
+		if (isRun) { return; }
+		isRun = true;
+		startTimer();
 	}
 
-	let startTimer = (duration) => {
-		let d = duration;
+	let startTimer = () => {
 		timerId = setInterval(function () {
 			if (!isRun) { stop.onclick() }
-			timerShow.textContent = convertSeconds(d);
-			timePassed++;
-			if (--d < 0) { isRun = false; }
+			timerShow.textContent = convertSeconds();
+			if (--mainTime < 0) { isRun = false; }
 		}, 1000);
 	}
 
-	let convertSeconds = (t) => {
-		let minutes = parseInt(t / 60, 10);
-		let seconds = parseInt(t % 60, 10);
-		minutes = minutes < 10 ? `0${minutes}` : minutes;
-		seconds = seconds < 10 ? `0${seconds}` : seconds;
-		return `${minutes}:${seconds}`
+	let convertSeconds = () => {
+		let h = Math.floor(mainTime / 3600);
+		let m = Math.floor((mainTime - 3600 * h) / 60);
+		let s = mainTime % 60;
+
+		h = (h < 10) ? `0${h}` : h;
+		m = (m < 10) ? `0${m}` : m;
+		s = (s < 10) ? `0${s}` : s;
+		return `${h}:${m}:${s}`
 	}
 }
 
@@ -294,24 +338,19 @@ function splashScreen() {
 	let date = new Date();
 	let field = "";
 
-	btn.onclick = () => {		
+	btn.onclick = () => {
 		let name = localStorage.getItem("name");
 		if (name != null && name != "") {
 			field = `Снова здравствуйте, ${name}!`
 		} else field = `Снова здравствуйте, гость!`
 		document.getElementById("splash_name").innerHTML = field;
 
-		if (date.getHours() < 10) field = `Текущее время: 0${date.getHours()}:`
-		else field = `Текущее время: ${date.getHours()}:`;
-		if (date.getMinutes() < 10) field += `0${date.getMinutes()}`
-		else field += `${date.getMinutes()}`;
+		field = (date.getHours() < 10) ? `Текущее время: 0${date.getHours()}:` : `Текущее время: ${date.getHours()}:`;
+		field += (date.getMinutes() < 10) ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
 		document.getElementById("splash_time").innerHTML = field;
 
-		if (date.getDate() < 10) field = `Дата: 0${date.getDate()}.`
-		else field = `Дата: ${date.getDate()}.`;
-		if (date.getMonth() < 10) field += `0${date.getMonth()}.`
-		else field += `${date.getMonth()}.`;
-
+		field = (date.getDate() < 10) ? `Дата: 0${date.getDate()}.` : `Дата: ${date.getDate()}.`;
+		field += (date.getMonth() < 10) ? `0${date.getMonth()}.` : `${date.getMonth()}.`;
 		field += `${date.getFullYear()}`;
 		document.getElementById("splash_date").innerHTML = field;
 
@@ -323,14 +362,14 @@ function splashScreen() {
 	}
 }
 
-//этот кусочек я честно украла 
+//этот кусочек честно украла, плавная прокрутка по якорям
 const anchors = [].slice.call(document.querySelectorAll('a[href*="#"]')),
 	animationTime = 400,
 	framesCount = 25;
 
 anchors.forEach(function (item) {
-	item.addEventListener('click', function (e) {
-		e.preventDefault();
+	item.addEventListener('click', function (elem) {
+		elem.preventDefault();
 		let coordY = document.querySelector(item.getAttribute('href')).getBoundingClientRect().top + window.pageYOffset;
 		let scroller = setInterval(function () {
 			let scrollBy = coordY / framesCount;
