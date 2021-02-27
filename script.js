@@ -143,6 +143,8 @@ function timer() {
 
 		mainTime = h * 3600 + m * 60 + s;
 
+		if (mainTime == 0) { stop.onclick() };
+
 		startTimer();
 	}
 
