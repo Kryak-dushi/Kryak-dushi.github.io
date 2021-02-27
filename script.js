@@ -20,7 +20,7 @@ function greetingsSet() {
 	}
 
 	function greetShow(name) {
-		gr.innerHTML = `Приветствую вас, ${name}!`;
+		gr.innerHTML = (name != '') ? `Приветствую вас, ${name}!` : `Приветствую вас, гость!`;
 		div_in.style.display = "none";
 		div_out.style.display = "block";
 	}
