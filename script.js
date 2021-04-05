@@ -75,9 +75,10 @@ function minAndMax() {
 		if (arr[i] > max) max = arr[i];
 		if (arr[i] < min) min = arr[i];
 	}
-	document.getElementById('res_max').innerHTML = `Максимальный элемент: ${max}`;
-	document.getElementById('res_min').innerHTML = `Минимальный элемент: ${min}`;
-	document.getElementById('arr').innerHTML = `Массив: ${arr}`;
+
+	document.getElementById('res_min').innerHTML = (min != undefined) ? `Минимальный элемент: ${min}` : "Минимального элемента нет";
+	document.getElementById('res_max').innerHTML = (max != undefined) ? `Максимальный элемент: ${max}` : "Максимального элемента нет";
+	document.getElementById('arr').innerHTML = (arr.length != 0) ? `Массив: ${arr}` : "Массив пуст";
 }
 
 function minAndMaxSecond() {
@@ -145,25 +146,32 @@ function timer() {
 
 		if (mainTime == 0) { stop.onclick() };
 
+		document.getElementById("timer_input").style.display = "none";
+
 		startTimer();
 	}
 
 	stop.onclick = () => {
 		isRun = false;
 		clearInterval(timerId);
+		document.getElementById("timer_input").style.display = "block";
 	}
 
 	cont.onclick = () => {
-		if (isRun) { return; }
-		isRun = true;
-		startTimer();
+		if (mainTime <= 0) { stop.onclick(); }
+		else if (isRun == false) {
+			isRun = true;
+			startTimer();
+		}
+
+		document.getElementById("timer_input").style.display = "none";
 	}
 
 	let startTimer = () => {
 		timerId = setInterval(function () {
-			if (!isRun) { stop.onclick() }
+			if (isRun == false) { stop.onclick() }
 			timerShow.textContent = convertSeconds();
-			if (--mainTime < 0) { isRun = false; }
+			if (mainTime == 0) { isRun = false; }
 		}, 1000);
 	}
 
@@ -171,6 +179,7 @@ function timer() {
 		let h = Math.floor(mainTime / 3600);
 		let m = Math.floor((mainTime - 3600 * h) / 60);
 		let s = mainTime % 60;
+		mainTime--;
 
 		h = (h < 10) ? `0${h}` : h;
 		m = (m < 10) ? `0${m}` : m;
@@ -337,10 +346,10 @@ function test() {
 function splashScreen() {
 	let splash = document.getElementById("splash");
 	let btn = document.getElementById("splash_btn");
-	let date = new Date();
 	let field = "";
 
 	btn.onclick = () => {
+		let date = new Date();
 		let name = localStorage.getItem("name");
 		if (name != null && name != "") {
 			field = `Снова здравствуйте, ${name}!`

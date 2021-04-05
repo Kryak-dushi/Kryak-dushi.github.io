@@ -54,6 +54,13 @@ p, label, button, input, div {
 h1 {
     font-size: 2em;
     color: #3644F0;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #3644F0;
+    margin-top: 20px;
 }
 
 p {
@@ -86,8 +93,7 @@ button {
     color: #fff;
     padding: 8px 25px;
     width: fit-content;
-    display: block;
-    margin: 10px;
+    margin: 10px 10px 0px;
 }
 
 input[type="text"] {
@@ -153,7 +159,6 @@ input[type="text"] {
     margin: 10px;
 }
 
-
 #triangle_con, #strings_con {
     display: flex;
     flex-direction: column;
@@ -217,4 +222,17 @@ input[type="text"] {
     width: 80%;
     margin: auto;
     word-break: break-all;
+}
+
+#longest_string_input, #frequent_symbol_input, #symbol_replacement_input_string, #symbol_replacement_input_symbol, #anagram_input_1, #anagram_input_2 {
+    padding: 18px 10px;
+    margin: 10px 10px 0px;
+}
+
+#longest_string_input {
+    min-width: 408px;
+}
+
+#frequent_symbol_input, #symbol_replacement_input_string, #symbol_replacement_input_symbol, #anagram_input_1, #anagram_input_2 {
+    min-width: 350px;
 }

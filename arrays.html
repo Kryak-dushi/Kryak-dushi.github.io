@@ -1,0 +1,93 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Массивы</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html">Главная</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="main_container">
+            <!-- Самая длинная строка-->
+            <div class="container">
+                <div>
+                    <img src="images/longest_string.png" alt="Самая длинная строка" class="leftimg">
+                </div>
+                <div>
+                    <h2>Самая длинная строка</h2>
+                    <div>
+                        <input type='text' id="longest_string_input" placeholder='Введите строку'>
+                        <div class="row_block">                            
+                            <button id="longest_string_add">Добавить в массив</button>
+                            <button id="longest_string_result_button">Найти</button>
+                        </div>
+                        <div id="longest_string_array" class="result"></div>
+                        <div id="longest_string_result" class="result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Поиск самого частого символа-->
+            <div class="container">
+                <div>
+                    <img src="images/frequent_symbol.png" alt="Поиск самого частого символа" class="rightimg">
+                </div>
+                <div>
+                    <h2>Поиск самого частого символа</h2>
+                    <div>
+                        <input type='text' id="frequent_symbol_input" placeholder='Введите строку'>
+                        <button id="frequent_symbol_result_button">Найти</button>
+                        <div id="frequent_symbol_result" class="result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Замена самого частого символа-->
+            <div class="container">
+                <div>
+                    <img src="images/symbol_replacement.png" alt="Замена самого частого символа" class="leftimg">
+                </div>
+                <div>
+                    <h2>Замена самого частого символа</h2>
+                    <div>
+                        <input type='text' id="symbol_replacement_input_string" placeholder='Введите строку'>
+                        <br>
+                        <input type='text' id="symbol_replacement_input_symbol" placeholder='Введите символ'>
+                        <br>
+                        <button id="symbol_replacement_result_button" onclick="FrequentSymbolReplacementSet()">Заменить</button>
+                        <div id="symbol_replacement_result" class="result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Анаграммы-->
+            <div class="container">
+                <div>
+                    <img src="images/anagram.png" alt="Анаграммы" class="rightimg">
+                </div>
+                <div>
+                    <h2>Анаграммы</h2>
+                    <div>
+                        <input type='text' id="anagram_input_1" placeholder='Введите первую строку'>
+                        <br>
+                        <input type='text' id="anagram_input_2" placeholder='Введите вторую строку'>
+                        <br>
+                        <button id="anagram_result_button" onclick="Anagram()">Заменить</button>
+                        <div id="anagram_result" class="result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="arrays.js"></script>
+</html>
