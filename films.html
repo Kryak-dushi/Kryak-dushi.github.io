@@ -1,0 +1,261 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Фильмы</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="film.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="arrays.html">Массивы</a></li>
+                    <li><a href="api.html">API</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="main_container" name="container_main">
+                <button id="add_film_btn" class="btn btn-primary button">Добавить фильм</button>
+                
+                <form id="form_film" style="display: none;" class="needs-validation" novalidate>
+                    <div class="form-group row">
+                        <label for="inputText1" class="col-sm-3 col-form-label">Название</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputText1" placeholder="Название" required>
+                            <div class="invalid-feedback">
+                                Пожалуйста, введите название фильма.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputText2" class="col-sm-3 col-form-label">Страна</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputText2" placeholder="Страна" required>
+                            <div class="invalid-feedback">
+                                Пожалуйста, введите название фильма.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputText3" class="col-sm-3 col-form-label">Жанры</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputText3" placeholder="Жанры" required>
+                            <div class="invalid-feedback">
+                                Пожалуйста, укажите жанры.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputText4" class="col-sm-3 col-form-label">Режиссеры</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputText4" placeholder="Режиссеры">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputTextarea1" class="col-sm-3 col-form-label">Описание</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="inputTextarea1"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputText5" class="col-sm-3 col-form-label">Продюсеры</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputText5" placeholder="Продюсеры">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputText6" class="col-sm-3 col-form-label">Операторы</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputText6" placeholder="Операторы">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputText10" class="col-sm-3 col-form-label">Композиторы</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputText10" placeholder="Композиторы">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputNumber1" class="col-sm-3 col-form-label">Бюджет</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="inputNumber1" min="0" placeholder="Бюджет">
+                            <small id="BudgetHelpBlock" class="form-text text-muted">
+                            Бюджет указывайте в долларах.
+                            </small>
+                            <div class="invalid-feedback">
+                                Бюджет не может быть отрицательным числом.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputNumber2" class="col-sm-3 col-form-label">Мировые сборы</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="inputNumber2" min="0" placeholder="Мировые сборы">
+                            <small id="ProceedHelpBlock" class="form-text text-muted">
+                            Мировые сборы указывайте в долларах.
+                            </small>
+                            <div class="invalid-feedback">
+                                Мировые сборы не могут быть отрицательным числом.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputNumber3" class="col-sm-3 col-form-label">Возрастные ограничения</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="inputNumber3" min="0" max="21" placeholder="Возрастные ограничения">
+                            <div class="invalid-feedback">
+                                Возрастные ограничения должны быть в диапазоне от 0 до 21.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="inputNumber4" class="col-sm-3 col-form-label">Длительность</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="inputNumber4" min="0" placeholder="Длительность" required>
+                            <small id="BudgetHelpBlock" class="form-text text-muted">
+                            Длительность указывайте в минутах.
+                            </small>
+                            <div class="invalid-feedback">
+                                Длительность не может быть отрицательным числом.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputNumber5" class="col-sm-3 col-form-label">Год выхода</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="inputNumber5" min="1895" placeholder="Год выхода">
+                            <div class="invalid-feedback">
+                                Год выхода не может быть меньше 1895.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputURL1" class="col-sm-3 col-form-label">Ссылка на изображение</label>
+                        <div class="col-sm-9">
+                            <input type="url" class="form-control" id="inputURL1" placeholder="Ссылка на изображение" required>
+                            <div class="invalid-feedback">
+                                Пожалуйста, укажите ссылку на изображение к фильму.
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary" id="add_film_info_btn">Добавить</button>
+                        </div>
+                    </div>
+                </form>
+                                
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Добавление отзыва</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="form_comment" class="needs-validation, film_form" novalidate>
+                                    <div class="form-group row">
+                                        <label for="inputText7" class="col-sm-4 col-form-label">Имя</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputText7" placeholder="Имя" required>
+                                            <div class="invalid-feedback">
+                                                Пожалуйста, введите Ваше имя.
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="form-group row">
+                                        <label for="inputText8" class="col-sm-4 col-form-label">Текст отзыва</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputText8" placeholder="Текст отзыва" required>
+                                            <div class="invalid-feedback">
+                                                Пожалуйста, введите Ваш отзыв.
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="form-group row">
+                                        <label for="inputNumber6" class="col-sm-4 col-form-label">Оценка</label>
+                                        <div class="col-sm-8">
+                                            <input type="number" class="form-control" id="inputNumber6" placeholder="Оценка">
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Пожалуйста, оцените фильм.
+                                        </div>
+                                    </div>
+                                </form>   
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add_comment_btn_close">Закрыть</button>
+                                <button type="button" class="btn btn-primary" id="add_comment_btn">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="filter_films_btn" class="btn btn-primary button">Фильтровать</button>
+
+                <form id="filter_films" style="display: none;" class="needs-validation, film_form" onsubmit="return false;" novalidate>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="inlineFormCustomSelect">Фильтровать по:</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="inlineFormCustomSelect">
+                                <option value="0">Страна</option>
+                                <option value="1">Жанр</option>
+                                <option value="2">Год выхода</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputText9" class="col-sm-3 col-form-label">Значение</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputText9" placeholder="Значение" required>
+                            <div class="invalid-feedback">
+                                Пожалуйста, введите значение, по которому хотите осуществить фильтрацию.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary" id="filter_films_info_btn">Отфильтровать</button>
+                            <button class="btn btn-secondary" onclick="location.reload()">Сбросить фильтр</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="films_container" id="container_films">
+                    
+                </div>                
+            </div>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+    <script src="films.js"></script>
+</html>
