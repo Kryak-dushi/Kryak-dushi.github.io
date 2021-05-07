@@ -361,7 +361,7 @@ function splashScreen() {
 		document.getElementById("splash_time").innerHTML = field;
 
 		field = (date.getDate() < 10) ? `Дата: 0${date.getDate()}.` : `Дата: ${date.getDate()}.`;
-		field += (date.getMonth() < 10) ? `0${date.getMonth()}.` : `${date.getMonth()}.`;
+		field += (date.getMonth() < 10) ? `0${(date.getMonth() + 1)}.` : `${(date.getMonth() + 1)}.`;
 		field += `${date.getFullYear()}`;
 		document.getElementById("splash_date").innerHTML = field;
 
