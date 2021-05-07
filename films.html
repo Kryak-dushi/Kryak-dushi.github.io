@@ -176,7 +176,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="form_comment" class="needs-validation, film_form" novalidate>
+                                <form id="form_comment" class="needs-validation" novalidate>
                                     <div class="form-group row">
                                         <label for="inputText7" class="col-sm-4 col-form-label">Имя</label>
                                         <div class="col-sm-8">
@@ -200,17 +200,22 @@
                                     <div class="form-group row">
                                         <label for="inputNumber6" class="col-sm-4 col-form-label">Оценка</label>
                                         <div class="col-sm-8">
-                                            <input type="number" class="form-control" id="inputNumber6" placeholder="Оценка">
+                                            <input type="number" class="form-control" id="inputNumber6" min="0" max="5" placeholder="Оценка" required>
                                         </div>
                                         <div class="invalid-feedback">
-                                            Пожалуйста, оцените фильм.
+                                            Пожалуйста, оцените фильм. Оценка должна быть от 0 до 5.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-8">
+                                            <button type="submit" class="btn btn-primary" id="add_comment_btn">Оставить отзыв</button>
                                         </div>
                                     </div>
                                 </form>   
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add_comment_btn_close">Закрыть</button>
-                                <button type="button" class="btn btn-primary" id="add_comment_btn">Оставить отзыв</button>
                             </div>
                         </div>
                     </div>

@@ -312,7 +312,6 @@ function addComment(id) {
         elem = arr.find(function (element, index, array) { if (element.id == id) return element; });
         elem.comments.push(new Comment(com_data[0].value, com_data[1].value, com_data[2].value));
         localStorage.setItem("arr", JSON.stringify(arr));
-        location.reload();
     }
 }
 
