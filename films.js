@@ -69,11 +69,14 @@ class FilmCard {
 
             if (val != "" && val !== undefined) {
                 let tr = document.createElement("tr");
+
                 let td_title = document.createElement("td");
                 td_title.innerHTML = title;
                 td_title.classList.add("film_info_title");
+
                 let td_value = document.createElement("td");
                 td_value.innerHTML = val;
+
                 tr.append(td_title, td_value);
                 table.append(tr);
             }
@@ -130,9 +133,7 @@ class FilmCard {
             }
         ]
 
-        table_data.forEach(elem => {
-            render(elem);
-        })
+        table_data.forEach(elem => { render(elem); })
 
         let com_btn = document.createElement("button");
         com_btn.classList.add("btn", "btn-primary", "btn-lg", "button");
@@ -146,8 +147,10 @@ class FilmCard {
             this.comments.forEach(element => {
                 let container_comment = document.createElement("div");
                 container_comment.classList.add("comment_container");
+
                 let author = document.createElement("h3");
                 author.innerHTML = element.author;
+
                 let text = document.createElement("p");
                 text.classList.add("comment_text");
                 text.innerHTML = element.text;
@@ -222,20 +225,19 @@ document.getElementById("add_film_btn").onclick = () => {
 document.getElementById("add_film_info_btn").onclick = () => {
     let form = document.getElementById("form_film");
 
-    console.log("addlog");
     if (checkValid(form) === true) {
         addFilm();
-        console.log("add");
         closeAddingFilmBlock();
     }
 }
-function checkValid(form) {    
+
+function checkValid(form) {
     let inputs = form.querySelectorAll('form > div > div > input');
     let flag = true;
+
     inputs.forEach(elem => {
         flag = flag && elem.checkValidity();
     })
-    console.log(flag);
     return flag;
 }
 
@@ -258,8 +260,6 @@ function addFilm() {
     }
     window.arr.push(new FilmCard(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], localStorage.getItem("index"), []));
     localStorage.setItem("arr", JSON.stringify(window.arr));
-    console.log(localStorage.getItem("arr"));
-    console.log(window.arr);
     window.arr[window.arr.length - 1].showFilmCard();
 
     for (let i = 0; i < data_in.length; i++) {
@@ -296,9 +296,11 @@ function deleteFilm(id) {
     if (localStorage.getItem("arr") !== undefined && localStorage.getItem("arr") !== null) {
         window.arr = JSON.parse(localStorage.getItem("arr"));
         let tmp = window.arr.findIndex(function (element, index, array) { if (element.id == id) return index; });
+
         if (tmp != -1) {
             window.arr.splice(tmp, 1);
         }
+
         localStorage.setItem("arr", JSON.stringify(window.arr));
         location.reload();
     }
