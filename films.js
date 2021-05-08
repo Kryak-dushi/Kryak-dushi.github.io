@@ -2,6 +2,19 @@ window.onload = () => {
     showFilms(arr);
 }
 
+window.addEventListener('load', function () {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+}, false);
+
 class FilmCard {
     constructor(filmName, country, genre, director, plot, producer, operator, composer, budget, proceed, ageRestrictions, duration, date, poster, id, comments) {
         this.filmName = filmName;
@@ -16,7 +29,7 @@ class FilmCard {
         this.proceed = proceed;
         this.ageRestrictions = ageRestrictions;
         this.duration = duration;
-        this.date = new Date(date);
+        this.date = (date != "" && date !== undefined) ? new Date(date) : "";
         this.poster = poster;
         this.id = id;
         this.comments = comments
@@ -208,6 +221,15 @@ document.getElementById("add_film_btn").onclick = () => {
 }
 
 document.getElementById("add_film_info_btn").onclick = () => {
+    let form = document.getElementById("form_film");
+
+    if (form.classList.contains("was-validated")) {
+        addFilm();
+        closeAddingFilmBlock();
+    }
+}
+
+function addFilm() {
     let data_in = document.querySelectorAll('#form_film > div > div > input, #form_film > div > div > textarea');
     let data = [];
 
@@ -215,65 +237,36 @@ document.getElementById("add_film_info_btn").onclick = () => {
         data[i] = data_in[i].value.trim();
     }
 
-    if (checkData(data)) {
-        if (localStorage.getItem("index") !== undefined) {
-            index = localStorage.getItem("index");
-            index++;
-        } else index = 1;
-        localStorage.setItem("index", index);
+    if (localStorage.getItem("index") !== undefined) {
+        index = localStorage.getItem("index");
+        index++;
+    } else index = 1;
+    localStorage.setItem("index", index);
 
-        if (localStorage.getItem("arr") !== undefined) {
-            arr = JSON.parse(localStorage.getItem("arr"));
-        }
-        arr.push(new FilmCard(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], localStorage.getItem("index"), []));
-        localStorage.setItem("arr", JSON.stringify(arr));
-        arr[arr.length - 1].showFilmCard();
+    if (localStorage.getItem("arr") !== undefined) {
+        arr = JSON.parse(localStorage.getItem("arr"));
+    }
+    arr.push(new FilmCard(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], localStorage.getItem("index"), []));
+    localStorage.setItem("arr", JSON.stringify(arr));
+    arr[arr.length - 1].showFilmCard();
 
-        for (let i = 0; i < data_in.length; i++) {
-            data_in[i].value = "";
-        }
-
-        document.getElementById("form_film").style.display = "none";
-        document.getElementById("add_film_btn").style.display = "block";
+    for (let i = 0; i < data_in.length; i++) {
+        data_in[i].value = "";
     }
 }
 
-
-(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
-
-function checkData(data) {
-    let flag = true;
-
-    /*if (parseInt(data[8]) < 0) flag = false;
-    if (parseInt(data[9]) < 0) flag = false;
-    if (parseInt(data[10]) < 0 || parseInt(data[10]) > 21) flag = false;
-    if (parseInt(data[11]) < 0 || parseInt(data[11]) > 14500) flag = false;
-    if (parseInt(data[12]) < 1895) flag = false;*/
-
-    return flag;
+function closeAddingFilmBlock() {
+    document.getElementById("form_film").style.display = "none";
+    document.getElementById("add_film_btn").style.display = "block";
 }
 
 function showFilms(arr) {
     if (localStorage.getItem("arr") !== undefined) {
         arr = JSON.parse(localStorage.getItem("arr"));
+        arr.forEach((element) => {
+            getFilmCardFromObj(element).showFilmCard();
+        })
     }
-    arr.forEach((element) => {
-        getFilmCardFromObj(element).showFilmCard();
-    })
 }
 
 function getFilmCardFromObj(obj) {
@@ -300,12 +293,16 @@ function deleteFilm(id) {
 }
 
 function addCommentShowBlock(id) {
-    document.getElementById("add_comment_btn").onclick = () => { addComment(id); }
+    document.getElementById("add_comment_btn").onclick = () => {
+        let form = document.querySelector("#form_comment");
+        if (form.classList.contains("was-validated")) {
+            addComment(id, form);
+        }
+    }
 }
 
-function addComment(id) {
-    let cont = document.querySelector("#form_comment");
-    let com_data = cont.querySelectorAll('form > div > div > input');
+function addComment(id, form) {
+    let com_data = form.querySelectorAll('form > div > div > input');
 
     if (localStorage.getItem("arr") != undefined) {
         arr = JSON.parse(localStorage.getItem("arr"));
@@ -357,3 +354,21 @@ function filterFilms(chosen, val) {
 
     return arr_filtered;
 }
+
+/*
+(function () {
+    'use strict';
+    window.addEventListener('load', function () {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+*/
