@@ -188,8 +188,8 @@ class Comment {
 
     deleteComment() {
         if (localStorage.getItem("arr") !== undefined) {
-            arr = JSON.parse(localStorage.getItem("arr"));
-            let tmp = arr.find(function (element, index, array) {
+            window.arr = JSON.parse(localStorage.getItem("arr"));
+            let tmp = window.arr.find(function (element, index, array) {
                 for (let i = 0; i < element.comments.length; i++) {
                     if (element.comments[i].author == this.author && element.comments[i].text == this.text && element.comments[i].rate == this.rate) return element;
                 }
@@ -206,7 +206,7 @@ class Comment {
                 }
             }
 
-            localStorage.setItem("arr", JSON.stringify(arr));
+            localStorage.setItem("arr", JSON.stringify(window.arr));
             location.reload();
         }
     }
@@ -223,10 +223,19 @@ document.getElementById("add_film_btn").onclick = () => {
 document.getElementById("add_film_info_btn").onclick = () => {
     let form = document.getElementById("form_film");
 
-    if (form.classList.contains("was-validated")) {
+    if (checkValid(form) === true) {
         addFilm();
         closeAddingFilmBlock();
     }
+}
+
+function checkValid(form) {
+    let inputs = form.querySelectorAll('form > div > div > input');
+    let flag = true;
+    inputs.forEach(elem => {
+        flag = flag && elem.checkValidity();
+    })
+    return flag;
 }
 
 function addFilm() {
@@ -244,11 +253,11 @@ function addFilm() {
     localStorage.setItem("index", index);
 
     if (localStorage.getItem("arr") !== undefined) {
-        arr = JSON.parse(localStorage.getItem("arr"));
+        window.arr = JSON.parse(localStorage.getItem("arr"));
     }
-    arr.push(new FilmCard(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], localStorage.getItem("index"), []));
-    localStorage.setItem("arr", JSON.stringify(arr));
-    arr[arr.length - 1].showFilmCard();
+    window.arr.push(new FilmCard(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], localStorage.getItem("index"), []));
+    localStorage.setItem("arr", JSON.stringify(window.arr));
+    window.arr[window.arr.length - 1].showFilmCard();
 
     for (let i = 0; i < data_in.length; i++) {
         data_in[i].value = "";
@@ -262,8 +271,8 @@ function closeAddingFilmBlock() {
 
 function showFilms() {
     if (localStorage.getItem("arr") !== undefined) {
-        arr = JSON.parse(localStorage.getItem("arr"));
-        arr.forEach((element) => {
+        window.arr = JSON.parse(localStorage.getItem("arr"));
+        window.arr.forEach((element) => {
             getFilmCardFromObj(element).showFilmCard();
         })
     }
@@ -282,20 +291,21 @@ function getFilmCardFromObj(obj) {
 
 function deleteFilm(id) {
     if (localStorage.getItem("arr") !== undefined) {
-        arr = JSON.parse(localStorage.getItem("arr"));
-        let tmp = arr.findIndex(function (element, index, array) { if (element.id == id) return index; });
+        window.arr = JSON.parse(localStorage.getItem("arr"));
+        let tmp = window.arr.findIndex(function (element, index, array) { if (element.id == id) return index; });
         if (tmp != -1) {
-            arr.splice(tmp, 1);
+            window.arr.splice(tmp, 1);
         }
-        localStorage.setItem("arr", JSON.stringify(arr));
+        localStorage.setItem("arr", JSON.stringify(window.arr));
         location.reload();
     }
 }
 
 function addCommentShowBlock(id) {
+    let form = document.querySelector("#form_comment");
+
     document.getElementById("add_comment_btn").onclick = () => {
-        let form = document.querySelector("#form_comment");
-        if (form.classList.contains("was-validated")) {
+        if (checkValid(form) === true) {
             addComment(id, form);
         }
     }
@@ -305,10 +315,10 @@ function addComment(id, form) {
     let com_data = form.querySelectorAll('form > div > div > input');
 
     if (localStorage.getItem("arr") != undefined) {
-        arr = JSON.parse(localStorage.getItem("arr"));
-        elem = arr.find(function (element, index, array) { if (element.id == id) return element; });
+        window.arr = JSON.parse(localStorage.getItem("arr"));
+        elem = window.arr.find(function (element, index, array) { if (element.id == id) return element; });
         elem.comments.push(new Comment(com_data[0].value, com_data[1].value, com_data[2].value));
-        localStorage.setItem("arr", JSON.stringify(arr));
+        localStorage.setItem("arr", JSON.stringify(window.arr));
     }
 }
 
@@ -328,7 +338,7 @@ document.getElementById("filter_films_info_btn").onclick = () => {
 }
 
 function filterFilms(chosen, val) {
-    arr = JSON.parse(localStorage.getItem("arr"));
+    window.arr = JSON.parse(localStorage.getItem("arr"));
     let arr_filtered = [];
     let atrs = [
         {
@@ -346,7 +356,7 @@ function filterFilms(chosen, val) {
     ]
     let propertyName = atrs.find(function (element, index, array) { if (element.value_ch == chosen) return element; }).field;
 
-    arr.forEach(element => {
+    window.arr.forEach(element => {
         if (element[propertyName].toLowerCase().includes(`${val}`.toLowerCase())) {
             arr_filtered.push(getFilmCardFromObj(element));
         }
