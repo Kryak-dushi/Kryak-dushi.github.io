@@ -187,7 +187,7 @@ class Comment {
     }
 
     deleteComment() {
-        if (localStorage.getItem("arr") !== undefined) {
+        if (localStorage.getItem("arr") !== undefined && localStorage.getItem("arr") !== null) {
             window.arr = JSON.parse(localStorage.getItem("arr"));
             let tmp = window.arr.find(function (element, index, array) {
                 for (let i = 0; i < element.comments.length; i++) {
@@ -199,7 +199,6 @@ class Comment {
                 let ind = tmp.comments.findIndex(function (element, index, array) {
                     if (element.author == this.author && element.text == this.text && element.rate == this.rate) return element;
                 }, this)
-                console.log(ind);
 
                 if (ind != -1) {
                     tmp.comments.splice(ind, 1);
@@ -223,18 +222,20 @@ document.getElementById("add_film_btn").onclick = () => {
 document.getElementById("add_film_info_btn").onclick = () => {
     let form = document.getElementById("form_film");
 
+    console.log("addlog");
     if (checkValid(form) === true) {
         addFilm();
+        console.log("add");
         closeAddingFilmBlock();
     }
 }
-
-function checkValid(form) {
+function checkValid(form) {    
     let inputs = form.querySelectorAll('form > div > div > input');
     let flag = true;
     inputs.forEach(elem => {
         flag = flag && elem.checkValidity();
     })
+    console.log(flag);
     return flag;
 }
 
@@ -246,17 +247,19 @@ function addFilm() {
         data[i] = data_in[i].value.trim();
     }
 
-    if (localStorage.getItem("index") !== undefined) {
+    if (localStorage.getItem("index") !== undefined && localStorage.getItem("index") !== null) {
         index = localStorage.getItem("index");
         index++;
     } else index = 1;
     localStorage.setItem("index", index);
 
-    if (localStorage.getItem("arr") !== undefined) {
+    if (localStorage.getItem("arr") !== undefined && localStorage.getItem("arr") !== null) {
         window.arr = JSON.parse(localStorage.getItem("arr"));
     }
     window.arr.push(new FilmCard(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], localStorage.getItem("index"), []));
     localStorage.setItem("arr", JSON.stringify(window.arr));
+    console.log(localStorage.getItem("arr"));
+    console.log(window.arr);
     window.arr[window.arr.length - 1].showFilmCard();
 
     for (let i = 0; i < data_in.length; i++) {
@@ -270,7 +273,7 @@ function closeAddingFilmBlock() {
 }
 
 function showFilms() {
-    if (localStorage.getItem("arr") !== undefined) {
+    if (localStorage.getItem("arr") !== undefined && localStorage.getItem("arr") !== null) {
         window.arr = JSON.parse(localStorage.getItem("arr"));
         window.arr.forEach((element) => {
             getFilmCardFromObj(element).showFilmCard();
@@ -290,7 +293,7 @@ function getFilmCardFromObj(obj) {
 }
 
 function deleteFilm(id) {
-    if (localStorage.getItem("arr") !== undefined) {
+    if (localStorage.getItem("arr") !== undefined && localStorage.getItem("arr") !== null) {
         window.arr = JSON.parse(localStorage.getItem("arr"));
         let tmp = window.arr.findIndex(function (element, index, array) { if (element.id == id) return index; });
         if (tmp != -1) {
