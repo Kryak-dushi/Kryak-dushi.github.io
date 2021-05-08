@@ -1,5 +1,5 @@
 window.onload = () => {
-    showFilms(arr);
+    showFilms();
 }
 
 window.addEventListener('load', function () {
@@ -212,8 +212,8 @@ class Comment {
     }
 }
 
-let arr = [];
-let index = 0;
+var arr = [];
+var index = 0;
 
 document.getElementById("add_film_btn").onclick = () => {
     document.getElementById("form_film").style.display = "block";
@@ -260,7 +260,7 @@ function closeAddingFilmBlock() {
     document.getElementById("add_film_btn").style.display = "block";
 }
 
-function showFilms(arr) {
+function showFilms() {
     if (localStorage.getItem("arr") !== undefined) {
         arr = JSON.parse(localStorage.getItem("arr"));
         arr.forEach((element) => {
@@ -354,21 +354,3 @@ function filterFilms(chosen, val) {
 
     return arr_filtered;
 }
-
-/*
-(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
-*/
